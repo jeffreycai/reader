@@ -1,0 +1,4 @@
+/files/*
+/modules/database/bootstrap.php
+/_rsync/*
+
