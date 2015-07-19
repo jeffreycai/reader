@@ -85,12 +85,19 @@ COLLATE = utf8_general_ci;
 CREATE TABLE IF NOT EXISTS `".$table_name_prefix."_read` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `article_id` INT ,
+  `user_wechat_account_id` INT ,
   PRIMARY KEY (`id`)
  ,
 INDEX `fk-".$table_name_prefix."_read-article_id-idx` (`article_id` ASC),
 CONSTRAINT `fk-".$table_name_prefix."_read-article_id`
   FOREIGN KEY (`article_id`)
   REFERENCES `wechat_article` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE ,
+INDEX `fk-".$table_name_prefix."_read-user_wechat_account_id-idx` (`user_wechat_account_id` ASC),
+CONSTRAINT `fk-".$table_name_prefix."_read-user_wechat_account_id`
+  FOREIGN KEY (`user_wechat_account_id`)
+  REFERENCES `".$table_name_prefix."_account` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE)
 ENGINE = InnoDB

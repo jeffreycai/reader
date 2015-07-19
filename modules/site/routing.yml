@@ -25,6 +25,11 @@ routing:
     isSecure: 0
     i18n: 0
     controller: site/ajax_accounts_add
+  accounts_remove:
+    path: ^\/accounts\/remove\/?$
+    isSecure: 0
+    i18n: 0
+    controller: site/ajax_accounts_remove
 
 assets:
   frontend:

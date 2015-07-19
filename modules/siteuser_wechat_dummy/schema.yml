@@ -28,9 +28,15 @@ user_1_read:
   fields:
     id: INT NOT NULL AUTO_INCREMENT
     article_id: INT
+    user_wechat_account_id: INT
   fks:
     article_id:
       foreign_key: article_id
       references: wechat_article.id
+      on_delete: CASCADE
+      on_update: CASCADE
+    user_wechat_account_id:
+      foreign_key: user_wechat_account_id
+      references: user_1_account.id
       on_delete: CASCADE
       on_update: CASCADE

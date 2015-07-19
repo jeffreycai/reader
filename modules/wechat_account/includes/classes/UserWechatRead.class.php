@@ -7,7 +7,7 @@ include_once MODULESROOT . DS . 'core' . DS . 'includes' . DS . 'classes' . DS .
  * - article_id
  * - user_wechat_account_id
  */
-class BaseUser1Read extends DBObject {
+class UserWechatRead extends DBObject {
   /**
    * Implement parent abstract functions
    */
@@ -20,7 +20,8 @@ class BaseUser1Read extends DBObject {
     $this->pk_auto_increased = TRUE;
   }
   protected function setTableName() {
-    $this->table_name = 'user_1_read';
+    $user = MySiteUser::getCurrentUser();
+    $this->table_name = 'user_'.$user->getId().'_read';
   }
   
   /**
@@ -50,49 +51,11 @@ class BaseUser1Read extends DBObject {
   /**
    * self functions
    */
-  static function dropTable() {
-    return parent::dropTableByName('user_1_read');
-  }
-  
-  static function tableExist() {
-    return parent::tableExistByName('user_1_read');
-  }
-  
-  static function createTableIfNotExist() {
-    global $mysqli;
-
-    if (!self::tableExist()) {
-      return $mysqli->query('
-CREATE TABLE IF NOT EXISTS `user_1_read` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `article_id` INT ,
-  `user_wechat_account_id` INT ,
-  PRIMARY KEY (`id`)
- ,
-INDEX `fk-user_1_read-article_id-idx` (`article_id` ASC),
-CONSTRAINT `fk-user_1_read-article_id`
-  FOREIGN KEY (`article_id`)
-  REFERENCES `wechat_article` (`id`)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE ,
-INDEX `fk-user_1_read-user_wechat_account_id-idx` (`user_wechat_account_id` ASC),
-CONSTRAINT `fk-user_1_read-user_wechat_account_id`
-  FOREIGN KEY (`user_wechat_account_id`)
-  REFERENCES `user_1_account` (`id`)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-      ');
-    }
-    
-    return true;
-  }
-  
   static function findById($id, $instance = 'User1Read') {
     global $mysqli;
-    $query = 'SELECT * FROM user_1_read WHERE id=' . $id;
+    $user = MySiteUser::getCurrentUser();
+    
+    $query = 'SELECT * FROM user_'.$user->getId().'_read WHERE id=' . $id;
     $result = $mysqli->query($query);
     if ($result && $b = $result->fetch_object()) {
       $obj = new $instance();
@@ -104,7 +67,9 @@ COLLATE = utf8_general_ci;
   
   static function findAll() {
     global $mysqli;
-    $query = "SELECT * FROM user_1_read";
+    $user = MySiteUser::getCurrentUser();
+    
+    $query = "SELECT * FROM user_".$user->getId()."_read";
     $result = $mysqli->query($query);
     
     $rtn = array();
@@ -119,7 +84,9 @@ COLLATE = utf8_general_ci;
   
   static function findAllWithPage($page, $entries_per_page) {
     global $mysqli;
-    $query = "SELECT * FROM user_1_read LIMIT " . ($page - 1) * $entries_per_page . ", " . $entries_per_page;
+    $user = MySiteUser::getCurrentUser();
+    
+    $query = "SELECT * FROM user_".$user->getId()."_read LIMIT " . ($page - 1) * $entries_per_page . ", " . $entries_per_page;
     $result = $mysqli->query($query);
     
     $rtn = array();
@@ -134,7 +101,9 @@ COLLATE = utf8_general_ci;
   
   static function countAll() {
     global $mysqli;
-    $query = "SELECT COUNT(*) as 'count' FROM user_1_read";
+    $user = MySiteUser::getCurrentUser();
+    
+    $query = "SELECT COUNT(*) as 'count' FROM user_".$user->getId()."_read";
     if ($result = $mysqli->query($query)) {
       return $result->fetch_object()->count;
     }
@@ -142,7 +111,9 @@ COLLATE = utf8_general_ci;
   
   static function truncate() {
     global $mysqli;
-    $query = "TRUNCATE TABLE user_1_read";
+    $user = MySiteUser::getCurrentUser();
+    
+    $query = "TRUNCATE TABLE user_".$user->getId()."_read";
     return $mysqli->query($query);
   }
 }

@@ -45,6 +45,14 @@ if (isset($_GET['keyword'])) {
       $articles[$i]['thumb'] = $matches[1][$i];
     }
   }
+  // get qrcode
+  $matches = array();
+  preg_match_all('/<img width="140".+src="([^"]+)"/', $result, $matches);
+  if (isset($matches[1])) {
+    for ($i = 0; $i < sizeof($matches[1]); $i++) {
+      $articles[$i]['qrcode'] = $matches[1][$i];
+    }
+  }
   // get intro
   $matches = array();
   preg_match_all('/<span class="sp-t.t">.+<\/span>/', $result, $matches);
