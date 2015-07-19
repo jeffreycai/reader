@@ -1,0 +1,23 @@
+#site_profile:
+#  1:
+#    id: 1
+#    user_id: 1
+#    nickname: 管理员Bluestream
+#    thumbnail: 1.jpg
+#  2:
+#    id: 2
+#    user_id: 2
+#    nickname: 代购小飞侠
+#    thumbnail: 2.jpg
+#  3:
+#    id: 3
+#    user_id: 3
+#    nickname: 国际和平礼品店
+#    thumbnail: 3.jpg
+
+site_profile:
+  1:
+    id: 1
+    user_id: 1
+    nickname: 海边的菜园
+    thumbnail: 1.jpg

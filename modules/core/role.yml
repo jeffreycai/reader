@@ -1,0 +1,19 @@
+# role
+role:
+  admin:
+    # permission
+    - Clear Cache
+    - Configure site language
+  publisher:
+    - Configure site language
+    
+    
+users:
+  jeffreycai:
+    email: jeffreycaizhenyuan@gmail.com
+    name: Jeffrey Cai
+    password: 0172122a
+    salt: KLJKLdfljiioe
+    role:
+      - admin
+

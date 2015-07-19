@@ -1,0 +1,86 @@
+routing:
+  admin_user_list:
+    path: ^\/admin\/user\/list\/?$
+    isSecure: 1
+    i18n: 1
+    controller: siteuser/backend/user/list
+  admin_user_add:
+    path: ^\/admin\/user\/add\/?$
+    isSecure: 1
+    i18n: 0
+    controller: siteuser/backend/user/add
+  admin_user_edit:
+    path: ^\/admin\/user\/edit\/(\d+)\/?$
+    isSecure: 1
+    i18n: 0
+    controller: siteuser/backend/user/edit
+  admin_user_delete:
+    path: ^\/admin\/user\/delete\/(\d+)\/?$
+    isSecure: 1
+    i18n: 0
+    controller: siteuser/backend/user/delete
+  admin_user_add_edit_submission:
+    path: ^\/admin\/user\/add_edit_submission\/?$
+    isSecure: 1
+    i18n: 0
+    controller: siteuser/backend/user/add_edit_submission
+  admin_permission_list:
+    path: ^\/admin\/permission\/manage\/?$
+    isSecure: 1
+    i18n: 1
+    controller: siteuser/backend/permission/manage
+  
+  
+  user_login:
+    path: ^\/users\/?$
+    isSecure: 0
+    i18n: 1
+    controller: siteuser/user_login
+  user_login_logic:
+    path: ^\/users\/login\/?$
+    isSecure: 0
+    i18n: 0
+    controller: siteuser/user_login_logic
+  user_logout:
+    path: ^\/users\/logout\/?$
+    isSecure: 0
+    i18n: 0
+    controller: siteuser/user_logout
+  user_signup:
+    path: ^\/users\/signup\/?$
+    isSecure: 0
+    i18n: 1
+    controller: siteuser/user_signup
+  user_unauthorised:
+    path: ^\/users\/unauthorised\/?$
+    isSecure: 0
+    i18n: 1
+    controller: siteuser/unauthorised
+    static_cache: 99999
+  user_forget_password:
+    path: ^\/users\/forget-password\/?$
+    isSecure: 0
+    i18n: 1
+    controller: siteuser/forget_password
+  user_forget_password_reset:
+    path: ^\/user\/(\d+)\/forget-password\/reset\/([^\/]+)\/?$
+    isSecure: 0
+    i18n: 1
+    controller: siteuser/forget_password_reset
+  user_signup_activate:
+    path: ^\/user\/(\d+)\/activate\/([^\/]+)\/?$
+    isSecure: 0
+    i18n: 0
+    controller: siteuser/user_signup_activate
+  user_signup_activate_resend_email:
+    path: ^\/user\/(\d+)\/activate_resend_email\/([^\/]+)\/?$
+    isSecure: 0
+    i18n: 0
+    controller: siteuser/user_signup_activate_resend_email
+  
+  
+#  role_list:
+#    path: ^\/admin\/role\/manage\/?$
+#    isSecure: 1
+#    i18n: 1
+#    controller: siteuser/backend/role/manage

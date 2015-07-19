@@ -1,0 +1,6 @@
+routing:
+  spam_token_fetch:
+    path: ^\/form\/spam\/token\/fetch(\/)?$
+    isSecure: 0
+    i18n: 0
+    controller: form/spam_token_fetch

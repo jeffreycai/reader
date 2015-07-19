@@ -1,0 +1,36 @@
+user_1_account:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    account_id: INT
+    category_id: INT
+  fks:
+    account_id:
+      foreign_key: account_id
+      references: wechat_account.id
+      on_delete: CASCADE
+      on_update: CASCADE
+    category_id:
+      foreign_key: category_id
+      references: user_1_category.id
+      on_delete: CASCADE
+      on_update: CASCADE
+
+      
+user_1_category:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    name: VARCHAR(255)
+
+user_1_read:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    article_id: INT
+  fks:
+    article_id:
+      foreign_key: article_id
+      references: wechat_article.id
+      on_delete: CASCADE
+      on_update: CASCADE

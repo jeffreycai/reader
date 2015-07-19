@@ -1,0 +1,13 @@
+site_profile:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    user_id: INT NOT NULL
+    nickname: VARCHAR(32)
+    thumbnail: VARCHAR(28)
+  fks:
+    user_id:
+      foreign_key: user_id
+      references: site_user.id
+      on_delete: CASCADE
+      on_update: CASCADE

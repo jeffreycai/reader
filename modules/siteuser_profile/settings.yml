@@ -1,0 +1,7 @@
+profile:
+  avatar_width: 215
+  avatar_height: 215
+  avatar_max_size: 2000000
+  
+  avatar_default: default.gif
+  

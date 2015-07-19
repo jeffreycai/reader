@@ -1,0 +1,3 @@
+log:
+  # override in site module if you want
+  backend_per_page: 50

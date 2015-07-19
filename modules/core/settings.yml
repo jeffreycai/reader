@@ -1,0 +1,12 @@
+
+# spam token expire time, in seconds
+spam_token_valid_time: 600
+
+
+## i18n settings, you can copy it into "site" module settings.yml to overide
+i18n: 0
+i18n_lang:
+  zh: 中文
+  en: English
+# this is only effective when i18n = 0
+i18n_lang_default: zh

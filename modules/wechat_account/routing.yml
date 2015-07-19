@@ -1,0 +1,22 @@
+routing:
+
+  admin_wechat_account_list:
+    path: ^\/admin\/wechat_account\/list\/?$
+    isSecure: 1
+    i18n: 1
+    controller: wechat_account/backend/wechat_account_list
+  admin_wechat_account_edit:
+    path: ^\/admin\/wechat_account\/edit\/(\d+)\/?$
+    isSecure: 1
+    i18n: 1
+    controller: wechat_account/backend/wechat_account_edit
+  admin_wechat_account_create:
+    path: ^\/admin\/wechat_account\/create\/?$
+    isSecure: 1
+    i18n: 1
+    controller: wechat_account/backend/wechat_account_create
+  admin_wechat_account_delete:
+    path: ^\/admin\/wechat_account\/delete\/(\d+)\/?$
+    isSecure: 1
+    i18n: 0
+    controller: wechat_account/backend/wechat_account_delete

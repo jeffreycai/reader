@@ -1,0 +1,106 @@
+routing:
+  login:
+    path: ^\/admin\/login(\/)?$
+    isSecure: 1
+    i18n: 1
+    controller: core/login
+  logout:
+    path: ^\/admin\/logout(\/)?$
+    isSecure: 0
+    i18n: 0
+    controller: core/logout
+
+  admin:
+    path: ^\/admin(\/)?$
+    isSecure: 1
+    i18n: 1
+    controller: core/backend/index
+  admin_dashboard:
+    path: ^\/admin\/dashboard(\/)?$
+    isSecure: 1
+    i18n: 1
+    controller: core/backend/dashboard
+  admin_maintenance:
+    path: ^\/admin\/maintenance(\/)?$
+    isSecure: 1
+    i18n: 1
+    controller: core/backend/maintenance
+  
+  confirm:
+    path: ^\/confirm\/?
+    isSecure: 0
+    i18n: 1
+    controller: core/confirm
+    
+  lang_switch:
+    path: ^\/switch\/([^\/]+)$
+    isSecure: 0
+    i18n: 0
+    controller: core/lang_switch
+    
+    
+
+
+
+
+
+
+assets:
+#  frontend:
+#    js:
+#      core:
+#        path: .?
+#        position: bottom
+#        weight: 30
+#        source: core/assets/js/script.js
+  
+  backend:
+    css:
+      bootstrap:
+        # url pattern to include this asset
+        path: .?
+        # asset position, "top" or "bottom"
+        position: top
+        # asset weight
+        weight: 10
+        # source of this asset, absolute url or relative path to module folder
+        source: //maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css
+      sb_admin:
+        path: .?
+        position: top
+        weight: 30
+        source: core/assets/css/sb-admin.css
+      fontawesome:
+        path: .?
+        position: top
+        weight: 20
+#        source: //maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css
+        source: core/assets/font-awesome-4.2.0/css/font-awesome.min.css
+
+    js:
+#      jquery:
+#        path: .?
+#        position: bottom
+#        weight: 20
+#        source: //ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js
+      bootstrap:
+        path: .?
+        position: bottom
+        weight: 30
+        source: //netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js
+      metisMenu:
+        path: .?
+        position: bottom
+        weight: 40
+        source: core/assets/js/metisMenu/jquery.metisMenu.js
+      backend:
+        path: .?
+        position: bottom
+        weight: 50
+        source: core/assets/js/backend.js
+#      ckeditor:
+#        path: .?
+#        position: top
+#        weight: 45
+#        source: //cdn.ckeditor.com/4.4.4/standard/ckeditor.js
+    

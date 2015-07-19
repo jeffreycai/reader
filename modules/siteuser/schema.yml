@@ -1,0 +1,68 @@
+site_user:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    username: VARCHAR(24) NOT NULL UNIQUE
+    email: VARCHAR(128) NOT NULL UNIQUE
+    salt: VARCHAR(16) NOT NULL
+    password: VARCHAR(32)
+    active: TINYINT(1) DEFAULT 1
+    email_activated: TINYINT(1) DEFAULT 1
+    created_at: INT NOT NULL
+    last_login: INT
+
+site_permission:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    name: VARCHAR(32) NOT NULL
+  indexes:
+    - `site_permission_name` (`name` ASC)
+
+site_role:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    name: VARCHAR(32) NOT NULL
+  indexes:
+    - `site_role_name` (`name` ASC)
+
+site_permission_role:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    permission_id: INT NOT NULL
+    role_id: INT NOT NULL
+  fks:
+    permission_id:
+      foreign_key: permission_id
+      references: site_permission.id
+      on_delete: CASCADE
+      on_update: CASCADE
+    role_id:
+      foreign_key: role_id
+      references: site_role.id
+      on_delete: CASCADE
+      on_update: CASCADE
+#  indexes:
+#    - `deal_expiry_at` (`expiry_at` DESC)
+#    - `deal_expiry_at_valid` (`expiry_at` DESC, `valid` DESC)
+
+site_user_role:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    user_id: INT NOT NULL
+    role_id: INT NOT NULL
+  fks:
+    user_id:
+      foreign_key: user_id
+      references: site_user.id
+      on_delete: CASCADE
+      on_update: CASCADE
+    role_id:
+      foreign_key: role_id
+      references: site_role.id
+      on_delete: CASCADE
+      on_update: CASCADE
+  

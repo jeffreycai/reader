@@ -1,0 +1,276 @@
+/** global style **/
+body {
+ font-family: "Helvetica Neue",Helvetica,Arial,Tahoma,sans-serif;
+ color: #464646;
+ font-size: 15px;
+}
+.container {
+  max-width: 750px;
+}
+a:hover {
+  text-decoration: none;
+}
+#body {
+  margin-bottom: 80px;
+}
+.accounts_search #body {
+  padding-top: 55px;
+}
+
+/** header style **/
+#header {
+  color: #FFF;
+  position: fixed;
+  height: 42px;
+  width: 100%;
+  z-index: 10;
+}
+#header .container {
+  background: #F44F44;
+  position: relative;
+  height: 100%;
+}
+#header a {
+  color: #FFF;
+}
+#header .dropdown {
+  float: left;
+  margin: 0 14px 0 0;
+}
+#header .dropdown a {
+  display: block;
+  height: 42px;
+  padding-top: 10px;
+}
+#header a.goback {
+  display: block;
+  font-size: 1.2em;
+  padding: 9px 9px 9px 0px; 
+  float: left;
+}
+#header .search {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+}
+#header .search button {
+  background-color: transparent;
+  border: none;
+  color: #FFF;
+}
+#header .search input {
+  background-color: transparent;
+  border: none;
+  color: #FFF;
+  font-size: 0.9em;
+  border-bottom: 1px solid #FCFCFC;
+  width: 228px;
+}
+.dropdown-content {
+  /*display: none;*/
+  list-style: none;
+  position: absolute;
+  top: 42px;
+  padding: 0;
+  background-color: #FFF;
+  z-index: 20;
+  -webkit-box-shadow: 0 0 10px 0 #AAA;
+  box-shadow: 0 0 10px 0 #AAA;
+  display: none;
+}
+.dropdown-content a {
+  color: #444 !important;
+  display: block;
+  padding: 7px 16px;
+  font-size: 0.9em;
+}
+.dropdown-content a:hover {
+  background: #EEE;
+}
+.dropdown-content a.active {
+  color: #F44F44 !important;
+}
+#filter {
+  left: 80px;
+}
+#category {
+  left: 20px;
+}
+
+/** footer style **/
+#footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}
+#footer .container {
+  background-color: #F0F0F0;
+  border-top: 1px solid #BBB;
+  text-align: center;
+  padding-top: 10px;
+}
+#footer a {
+  color: #929292;
+  font-size: 0.8em;
+}
+#footer a.active {
+  color: #F44F44;
+  font-weight: bold;
+}
+#footer span {
+  font-size: 2em;
+}
+
+/** mainnav **/
+#mainnav {
+  padding-top: 43px;
+  text-align: center;
+}
+#mainnav a {
+  display: block;
+  padding: 6px 0;
+  text-align: center;
+  font-size: 0.9em;
+  color: #444;
+}
+#mainnav .item {
+  border-bottom: 2px solid #888;
+}
+#mainnav .item.active {
+  border-bottom: 2px solid #F44F44;
+}
+#mainnav .item.active a {
+  color: #F44F44;
+}
+
+/** article **/
+.article {
+  position: relative;
+  overflow: hidden;
+}
+body.articles .article {
+  height: 86px;
+}
+.article.read {
+  background-color: #F9F9F9;
+}
+.article .inner {
+  padding: 10px 0;
+  *zoom: 1;
+  position: relative;
+}
+.article .inner:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+.article .left {
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+.article .right {
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+.article .middle {
+  padding: 0 0 0 85px;
+}
+.article .left img {
+  display: block;
+  padding: 2px;
+  background-color: #FFF;
+  border: 1px solid #AAA;
+  width: 60px;
+  height: 60px;
+}
+body.accounts_search .article .left img {
+  border-radius: 30px;
+}
+.article h2 {
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+.article .actions {
+  display: none;
+  width: 100%;
+  height: 86px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.1);
+}
+.actions ul {
+  margin: 30px auto 0 auto;
+  list-style: none;
+  padding: 0px;
+  text-align: center;
+}
+.actions ul li {
+  display: inline-block;
+  margin: 0 15px;
+}
+.actions ul li a {
+  font-size: 1.4em;
+  color: #777;
+}
+.article .account,
+.article .description, 
+.article .certification, 
+.article .latest {
+  font-size: 0.8em;
+  margin-bottom: 0.6em;
+  position: relative;
+}
+.article .account {
+  color: #AAA;
+}
+.article .sp-tit {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: block;
+}
+.article .sp-txt {
+  padding-left: 70px;
+  display: block;
+}
+.btn.subscribe {
+  color: #60D35F;
+  border-color: #60D35F;
+}
+.btn.subscribe.disabled {
+  border-color: #A6A6A6;
+}
+.btn.subscribe:hover {
+  background-color: #F3F3F3;
+}
+.btn.unsubscribe {
+  background-color: #d9534f;
+  border-color: #d9534f;
+  color: #FFF;
+}
+.btn.unsubscribe.disabled {
+  border-color: #A6A6A6;
+}
+#pagebar_container {
+  margin-top: 25px;
+}
+#pagebar_container a,
+#pagebar_container span {
+  display: block;
+  float: left;
+  padding: 2px 7px;
+  font-size: 0.9em;
+  margin-right: 8px;
+  margin-bottom: 4px;
+  border: 1px solid #AAA;
+}
+#pagebar_container .mun {
+  clear: both;
+  font-size: 0.9em;
+  color: #AAA;
+}

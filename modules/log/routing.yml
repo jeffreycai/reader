@@ -1,0 +1,11 @@
+routing:
+  log:
+    path: ^\/admin\/log\/list(\/)?$
+    isSecure: 1
+    i18n: 0
+    controller: log/backend/list
+  log_empty:
+    path: ^\/admin\/log\/empty(\/)?$
+    isSecure: 1
+    i18n: 0
+    controller: log/backend/empty

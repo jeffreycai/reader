@@ -1,0 +1,69 @@
+wechat_account:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    nickname: VARCHAR(31) NOT NULL
+    wechat_id: VARCHAR(31) NOT NULL UNIQUE
+    openid: VARCHAR(31) NOT NULL UNIQUE
+    description: VARCHAR(1023)
+    certification: VARCHAR(1023)
+    qr_code: VARCHAR(127) NOT NULL
+    logo: VARCHAR(127) NOT NULL
+    active: TINYINT(1) DEFAULT 1
+    last_updated: INT
+  indexes:
+    - `wechat_account_openid` (`openid` ASC)
+  form:
+    fields:
+      nickname:
+        widget: text
+        widget_conf:
+          required: 1
+      wechat_id:
+        widget: text
+        widget_conf:
+          required: 1
+      openid:
+        widget: text
+        widget_conf:
+          required: 1
+      introduction:
+        widget: textarea
+        widget_conf:
+          required: 0
+          wysiwyg: 0
+      cirtification:
+        widget: textarea
+        widget_conf:
+          required: 0
+          wysiwyg: 0
+      qr_code:
+        widget: text
+        widget_conf:
+          required: 1
+      logo:
+        widget: text
+        widget_conf:
+          required: 1
+      active:
+        widget: checkbox_single
+        widget_conf: 
+      last_updated:
+        widget: text
+        widget_conf:
+          required: 0
+    names:
+      en: Wechat Account
+      zh: 微信公共账号
+          
+wechat_article:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    title: VARCHAR(1023) NOT NULL
+    published_at: INT NOT NULL
+    thumbnail: VARCHAR(255) NOT NULL
+    url: VARCHAR(255) NOT NULL
+
+    
+    

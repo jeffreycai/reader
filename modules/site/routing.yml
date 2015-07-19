@@ -1,0 +1,86 @@
+routing:
+  index:
+    path: ^\/?$
+    isSecure: 0
+    i18n: 0
+    controller: site/index
+  
+  article_list:
+    path: ^\/articles\/?$
+    isSecure: 0
+    i18n: 0
+    controller: site/articles
+  account_list:
+    path: ^\/accounts\/?$
+    isSecure: 0
+    i18n: 0
+    controller: site/accounts
+  accounts_search:
+    path: ^\/accounts\/search\/?$
+    isSecure: 0
+    i18n: 0
+    controller: site/accounts_search
+  accounts_add:
+    path: ^\/accounts\/add\/?$
+    isSecure: 0
+    i18n: 0
+    controller: site/ajax_accounts_add
+
+assets:
+  frontend:
+    css:
+      # bootstrap
+      bootstrap:
+        path: .?
+        position: top
+        weight: 10
+        source: //maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css
+      sweet_alert:
+        path: .?
+        position: top
+        weight: 50
+        source: site/assets/bootstrap-sweetalert/lib/sweet-alert.css
+        
+#        source: site/assets/css/bootstrap.min.css
+      # fontawesome
+#      fontawesome:
+#        path: .?
+#        position: top
+#        weight: 20
+#        source: //maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css
+#      swiper:
+#        path: .?
+#        position: top
+#        weight: 30
+##        source: https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.x.x/css/swiper.min.css
+#        source: site/assets/css/swipe.min.css
+
+      site:
+        path: .?
+        position: top
+        weight: 40
+        source: site/assets/css/style.css
+        
+    js:
+      bootstrap:
+        path: .?
+        position: bottom
+        weight: 10
+        source: //netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js
+      sweet_alert:
+        path: .?
+        position: top
+        weight: 30
+        source: site/assets/bootstrap-sweetalert/lib/sweet-alert.min.js
+#        source: site/assets/js/bootstrap.min.js
+#      swiper:
+#        path: .?
+#        position: bottom
+#        weight: 20
+##        source: https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.x.x/js/swiper.jquery.min.js
+#        source: site/assets/js/swipe.jquery.min.js
+      site:
+        path: .?
+        position: bottom
+        weight: 30
+        source: site/assets/js/script.js

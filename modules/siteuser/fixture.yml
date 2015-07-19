@@ -1,0 +1,92 @@
+#site_user:
+#  1:
+#    id: 1
+#    username: 'jeffreycai'
+#    email: 'jeffreycaizhenyuan@gmail.com'
+#    salt: 12345ytghdgtgfgf
+#    password: 36f9c5f6816b003486f6bb340b56d605
+#    created_at: 1426550854
+#  2:
+#    id: 2
+#    username: 'affiliator'
+#    email: 'jeffrey.caizhenyuan@gmail.com'
+#    salt: 12345ytghdgtgfgf
+#    password: 36f9c5f6816b003486f6bb340b56d605
+#    created_at: 1426550854
+#  3:
+#    id: 3
+#    username: 'vendor'
+#    email: 'jeffreycai.zhenyuan@gmail.com'
+#    salt: 12345ytghdgtgfgf
+#    password: 36f9c5f6816b003486f6bb340b56d605
+#    created_at: 1426550854
+#
+#site_permission:
+#  1:
+#    id: 1
+#    name: 'order products'
+#  2:
+#    id: 2
+#    name: 'manage products'
+#site_role:
+#  1:
+#    id: 1
+#    name: 'ADMIN'
+#  2:
+#    id: 2
+#    name: 'AFFILIATOR'
+#  3:
+#    id: 3
+#    name: 'VENDOR'
+#
+#site_permission_role:
+#  1:
+#    id: 1
+#    permission_id: 1
+#    role_id: 2
+#  2:
+#    id: 2
+#    permission_id: 2
+#    role_id: 1
+#    
+#site_user_role:
+#  1:
+#    id: 1
+#    user_id: 1
+#    role_id: 1
+#  2:
+#    id: 2
+#    user_id: 2
+#    role_id: 2
+#  3:
+#    id: 3
+#    user_id: 3
+#    role_id: 3
+
+
+site_user:
+  1:
+    id: 1
+    username: 'caizhenyuan'
+    email: 'jeffreycaizhenyuan@gmail.com'
+    salt: 12345ytghdgtgfgf
+    password: e08a816065a5a880698c2ea7d9086c71
+    created_at: 1426550854
+site_permission:
+  1:
+    id: 1
+    name: 'manager feeds'
+site_role:
+  1:
+    id: 1
+    name: 'AUTHENTICATED'
+site_permission_role:
+  1:
+    id: 1
+    permission_id: 1
+    role_id: 1
+site_user_role:
+  1:
+    id: 1
+    user_id: 1
+    role_id: 1
