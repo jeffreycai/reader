@@ -127,7 +127,7 @@ abstract class DBObject {
 //if ($this->getTableName() == 'user_5_account') {
 //  die($query);
 //}
-//die($query);
+//die("<meta charset='utf-8'>".$query);
     $result = $mysqli->query($query);
     $this->last_execute_query = $query;
 

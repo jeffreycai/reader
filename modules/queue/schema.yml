@@ -1,0 +1,16 @@
+queue:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    created_at: INT NOT NULL
+    started_at: INT DEFAULT NULL
+    finished_at: INT DEFAULT NULL
+    status: TINYINT(1)
+    status_info: TEXT
+    arguments: TEXT
+    function: VARCHAR(20)
+    type: VARCHAR(15) NOT NULL
+    priority: TINYINT DEFAULT 0
+    description: TEXT
+    
+    

@@ -17,4 +17,19 @@ class WechatAccount extends BaseWechatAccount {
     }
     return null;
   }
+  
+  static function findAllToCrawl() {
+    global $mysqli;
+    $query = "SELECT * FROM wechat_account WHERE active=1";
+    $result = $mysqli->query($query);
+    
+    $rtn = array();
+    while ($result && $b = $result->fetch_object()) {
+      $obj= new WechatAccount();
+      DBObject::importQueryResultToDbObject($b, $obj);
+      $rtn[] = $obj;
+    }
+    
+    return $rtn;
+  }
 }

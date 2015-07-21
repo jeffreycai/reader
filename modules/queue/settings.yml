@@ -1,0 +1,3 @@
+queue:
+  # how many seconds does a thread expire
+  thread_expire_time: 60

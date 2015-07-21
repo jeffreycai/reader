@@ -22,6 +22,7 @@ if (isset($custom_modules)) {
       'mail',
       'crawler',
       'log',
+      'queue'
 //      'siteuser_wechat_dummy'
   );
 

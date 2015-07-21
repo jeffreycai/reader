@@ -60,10 +60,15 @@ wechat_article:
   pk: id
   fields:
     id: INT NOT NULL AUTO_INCREMENT
+    biz_id: VARCHAR(31)
+    mid: VARCHAR(15)
+    idx: TINYINT
     title: VARCHAR(1023) NOT NULL
     published_at: INT NOT NULL
     thumbnail: VARCHAR(255) NOT NULL
     url: VARCHAR(255) NOT NULL
-
+  indexes:
+    - `wechat_article_combo` (`biz_id`,`mid`,`idx`)
+    
     
     

@@ -1,0 +1,21 @@
+routing:
+  queue_list:
+    path: ^\/admin\/queue\/list(\/)?$
+    isSecure: 1
+    i18n: 1
+    controller: queue/backend/list
+  queue_delete:
+    path: ^\/admin\/queue\/(\d+)\/delete(\/)?$
+    isSecure: 1
+    i18n: 1
+    controller: queue/backend/delete
+  queue_run:
+    path: ^\/admin\/queue\/(\d+)\/run(\/)?$
+    isSecure: 1
+    i18n: 1
+    controller: queue/backend/run
+  queue_empty:
+    path: ^\/admin\/queue\/empty\/?$
+    isSecure: 1
+    i18n: 0
+    controller: queue/backend/empty

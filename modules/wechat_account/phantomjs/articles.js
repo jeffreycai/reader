@@ -1,31 +1,41 @@
 var page = require('webpage').create()
     system = require('system');
+page.settings.resourceTimeout = 5000; // 5 secs
+page.onResourceTimeout = function(e) {
+  console.log('[Error]: Phantomjs timeout');
+  phantom.exit(1);
+}
+    
+var args = system.args;
+var url = '';
+if (args.length !== 2) {
+  console.log('[Error]: url required');
+  phantom.exit();
+} else {
+  url = args[1];
+}
     
 page.onConsoleMessage = function(msg) {
     system.stdout.write(msg);
 };
 
-page.open('http://weixin.sogou.com/weixin?query='+encodeURIComponent('读书')+'&fr=sgsearch&type=1', function(status) {
+page.open(url, function(status) {
   if (status === 'success') {
-    page.evaluate(function(){
-      var articles = new Array();
-      $('._item').each(function(){
-        var article = {
-          'thumb': $('.img-box img').attr('src'),
-          'title': $('.txt-box h3').html(),
-          'wechat_account': $('.txt-box h4 span').text().split(':')[1],
-        };
-        console.log($('.txt-box h4 span',this).html());
-        articles.push(article);
+    waitFor(function(){
+      return page.evaluate(function(){
+        return $('#wxmore').length > 0;
       });
-//      console.log(JSON.stringify(articles));
-    });
-    phantom.exit();
+    }, function(){
+      console.log(page.content);
+      phantom.exit();
+    }, 4500); // wait for 4.5 seconds
   } else {
-    console.log('Can not open sougou homepage');
-    phantom.exit();
+    console.log("[Error]: can not load page")
   }
 });
+
+
+
 
 function waitFor(testFx, onReady, timeOutMillis) {
   var maxtimeOutMillis = timeOutMillis ? timeOutMillis : 3000, //< Default Max Timout is 3s
@@ -42,7 +52,7 @@ function waitFor(testFx, onReady, timeOutMillis) {
         phantom.exit(1);
       } else {
         // Condition fulfilled (timeout and/or condition is 'true')
-        console.log("'waitFor()' finished in " + (new Date().getTime() - start) + "ms.");
+//        console.log("'waitFor()' finished in " + (new Date().getTime() - start) + "ms.");
         typeof(onReady) === "string" ? eval(onReady) : onReady(); //< Do what it's supposed to do once the condition is fulfilled
         clearInterval(interval); //< Stop this interval
       }

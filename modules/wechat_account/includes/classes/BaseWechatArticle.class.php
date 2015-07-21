@@ -4,6 +4,9 @@ include_once MODULESROOT . DS . 'core' . DS . 'includes' . DS . 'classes' . DS .
 /**
  * DB fields
  * - id
+ * - biz_id
+ * - mid
+ * - idx
  * - title
  * - published_at
  * - thumbnail
@@ -33,6 +36,24 @@ class BaseWechatArticle extends DBObject {
    }
    public function getId() {
      return $this->getDbFieldId();
+   }
+   public function setBizId($var) {
+     $this->setDbFieldBiz_id($var);
+   }
+   public function getBizId() {
+     return $this->getDbFieldBiz_id();
+   }
+   public function setMid($var) {
+     $this->setDbFieldMid($var);
+   }
+   public function getMid() {
+     return $this->getDbFieldMid();
+   }
+   public function setIdx($var) {
+     $this->setDbFieldIdx($var);
+   }
+   public function getIdx() {
+     return $this->getDbFieldIdx();
    }
    public function setTitle($var) {
      $this->setDbFieldTitle($var);
@@ -79,12 +100,16 @@ class BaseWechatArticle extends DBObject {
       return $mysqli->query('
 CREATE TABLE IF NOT EXISTS `wechat_article` (
   `id` INT NOT NULL AUTO_INCREMENT ,
+  `biz_id` VARCHAR(31) ,
+  `mid` VARCHAR(15) ,
+  `idx` TINYINT ,
   `title` VARCHAR(1023) NOT NULL ,
   `published_at` INT NOT NULL ,
   `thumbnail` VARCHAR(255) NOT NULL ,
   `url` VARCHAR(255) NOT NULL ,
   PRIMARY KEY (`id`)
-)
+ ,
+INDEX `wechat_article_combo` (`biz_id`,`mid`,`idx`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
