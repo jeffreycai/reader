@@ -13,6 +13,7 @@ wechat_account:
     last_updated: INT
   indexes:
     - `wechat_account_openid` (`openid` ASC)
+    - `wechat_account_wechat_id` (`wechat_id` ASC)
   form:
     fields:
       nickname:
@@ -60,6 +61,7 @@ wechat_article:
   pk: id
   fields:
     id: INT NOT NULL AUTO_INCREMENT
+    account_id: INT NOT NULL
     biz_id: VARCHAR(31)
     mid: VARCHAR(15)
     idx: TINYINT
@@ -69,6 +71,12 @@ wechat_article:
     url: VARCHAR(255) NOT NULL
   indexes:
     - `wechat_article_combo` (`biz_id`,`mid`,`idx`)
+  fks:
+    account_id:
+      foreign_key: account_id
+      references: wechat_account.id
+      on_delete: CASCADE
+      on_update: CASCADE
     
     
 wechat_account_user:

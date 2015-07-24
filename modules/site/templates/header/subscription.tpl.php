@@ -10,13 +10,30 @@
     </div>
     <div>
       <ul id="category" class="dropdown-content">
-        <li><a href="#" data-category="all">所有</a></li>
-        <li><a href="#" data-category="news">新闻</a></li>
+        <li><a href="<?php echo uri('articles') . build_query_string(array(
+            'category' => 'all',
+            'read' => $read
+        )) ?>">所有</a></li>
+<?php foreach (UserWechatCategory::findAll() as $category): ?>
+        <li><a href="<?php echo uri('articles') . build_query_string(array(
+            'category' => $category->getId(),
+            'read' => $read
+        )) ?>"><?php echo $category->getName() ?></a></li>
+<?php endforeach; ?>
       </ul>
       <ul id="filter" class="dropdown-content">
-        <li><a href="#" data-filter="all" class="active">全部</a></li>
-        <li><a href="#" data-filter="unread">未读</a></li>
-        <li><a href="#" data-filter="stared">收藏</a></li>
+        <li><a href="<?php echo uri('articles') . build_query_string(array(
+            'category' => $category->getId(),
+            'read' => 'all'
+        )) ?>" data-filter="all" class="active">全部</a></li>
+        <li><a href="<?php echo uri('articles') . build_query_string(array(
+            'category' => $category->getId(),
+            'read' => 0
+        )) ?>">未读</a></li>
+        <li><a href="<?php echo uri('articles') . build_query_string(array(
+            'category' => $category->getId(),
+            'read' => 1
+        )) ?>">已读</a></li>
       </ul>
     </div>
   </div>

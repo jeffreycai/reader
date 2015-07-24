@@ -24,7 +24,7 @@ foreach ($accounts as $account) {
   // the file, we know when it was created
   $original_timezone = date_default_timezone_get();
   date_default_timezone_set('Asia/Shanghai');
-  $filename = 'account_craw_' . $account->getWechatId() . '_' . date('Y-m-d-H-i-s');
+  $filename = 'account_crawl_' . $account->getWechatId() . '_' . date('Y-m-d-H-i-s');
   date_default_timezone_set($original_timezone);
   
   

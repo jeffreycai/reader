@@ -4,6 +4,7 @@ include_once MODULESROOT . DS . 'core' . DS . 'includes' . DS . 'classes' . DS .
 /**
  * DB fields
  * - id
+ * - account_id
  * - biz_id
  * - mid
  * - idx
@@ -36,6 +37,12 @@ class BaseWechatArticle extends DBObject {
    }
    public function getId() {
      return $this->getDbFieldId();
+   }
+   public function setAccountId($var) {
+     $this->setDbFieldAccount_id($var);
+   }
+   public function getAccountId() {
+     return $this->getDbFieldAccount_id();
    }
    public function setBizId($var) {
      $this->setDbFieldBiz_id($var);
@@ -100,6 +107,7 @@ class BaseWechatArticle extends DBObject {
       return $mysqli->query('
 CREATE TABLE IF NOT EXISTS `wechat_article` (
   `id` INT NOT NULL AUTO_INCREMENT ,
+  `account_id` INT NOT NULL ,
   `biz_id` VARCHAR(31) ,
   `mid` VARCHAR(15) ,
   `idx` TINYINT ,
@@ -109,7 +117,13 @@ CREATE TABLE IF NOT EXISTS `wechat_article` (
   `url` VARCHAR(255) NOT NULL ,
   PRIMARY KEY (`id`)
  ,
-INDEX `wechat_article_combo` (`biz_id`,`mid`,`idx`))
+INDEX `wechat_article_combo` (`biz_id`,`mid`,`idx`) ,
+INDEX `fk-wechat_article-account_id-idx` (`account_id` ASC),
+CONSTRAINT `fk-wechat_article-account_id`
+  FOREIGN KEY (`account_id`)
+  REFERENCES `wechat_account` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;

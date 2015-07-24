@@ -67,7 +67,7 @@ class UserWechatCategory extends DBObject {
     
     $rtn = array();
     while ($result && $b = $result->fetch_object()) {
-      $obj= new User1Category();
+      $obj= new UserWechatCategory();
       DBObject::importQueryResultToDbObject($b, $obj);
       $rtn[] = $obj;
     }
@@ -84,7 +84,7 @@ class UserWechatCategory extends DBObject {
     
     $rtn = array();
     while ($result && $b = $result->fetch_object()) {
-      $obj= new User1Category();
+      $obj= new UserWechatCategory();
       DBObject::importQueryResultToDbObject($b, $obj);
       $rtn[] = $obj;
     }

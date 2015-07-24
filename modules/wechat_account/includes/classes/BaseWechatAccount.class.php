@@ -125,7 +125,8 @@ CREATE TABLE IF NOT EXISTS `wechat_account` (
   `last_updated` INT ,
   PRIMARY KEY (`id`)
  ,
-INDEX `wechat_account_openid` (`openid` ASC))
+INDEX `wechat_account_openid` (`openid` ASC) ,
+INDEX `wechat_account_wechat_id` (`wechat_id` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;

@@ -22,6 +22,11 @@ class MySiteUser extends SiteUser {
   public function delete() {
     $table_name_prefix = 'user_' . $this->getId();
 
+    // delete all his wechat_account first, as the deletion can cast onto global accounts
+    foreach (UserWechatAccount::findAll($this->getId()) as $account) {
+      $account->delete();
+    }
+    
     // delete user tables
     parent::dropTableByName($table_name_prefix . '_read');
     parent::dropTableByName($table_name_prefix . '_account');

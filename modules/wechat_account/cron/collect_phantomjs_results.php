@@ -21,9 +21,19 @@ if ($handle = opendir($result_dir)) {
       
       // get created date from file name
       $matches = array();
-      $date = preg_match('/_((\d+)\-\d+\-\d+)\-/', $file, $matches);
+      preg_match('/_((\d+)\-\d+\-\d+)\-/', $file, $matches);
       $date = $matches[1];
       $year = $matches[2];
+      // get wechat_id from file name
+      $matches = array();
+      preg_match('/account_crawl_([^_]+)_/', $file, $matches);
+      $wechat_id = $matches[1];
+      $wechat_account = WechatAccount::findByWechatId($wechat_id);
+      if ($wechat_account == null) {
+        $log = new Log('wechat_account', Log::ERROR, 'Collect error: can not find wechat_account with wechat_id:' . $wechat_id);
+        unlink($file);
+        exit;
+      }
       
       // parse html
       load_library_simple_html_dom();
@@ -76,6 +86,7 @@ if ($handle = opendir($result_dir)) {
           }
           
           $wechat_article = new WechatArticle();
+          $wechat_article->setAccountId($wechat_account->getId());
           $wechat_article->setBizId($bizid);
           $wechat_article->setMid($mid);
           $wechat_article->setIdx($idx);

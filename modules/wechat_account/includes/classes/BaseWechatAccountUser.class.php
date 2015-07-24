@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `wechat_account_user` (
   `user_id` INT ,
   PRIMARY KEY (`id`)
  ,
+INDEX `wechat_account_user_combo` (`account_id`,`user_id`) ,
 INDEX `fk-wechat_account_user-account_id-idx` (`account_id` ASC),
 CONSTRAINT `fk-wechat_account_user-account_id`
   FOREIGN KEY (`account_id`)

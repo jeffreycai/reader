@@ -1,6 +1,6 @@
 var page = require('webpage').create()
     system = require('system');
-page.settings.resourceTimeout = 5000; // 5 secs
+page.settings.resourceTimeout = 6000; // 5 secs
 page.onResourceTimeout = function(e) {
   console.log('[Error]: Phantomjs timeout');
   phantom.exit(1);
@@ -28,7 +28,7 @@ page.open(url, function(status) {
     }, function(){
       console.log(page.content);
       phantom.exit();
-    }, 4500); // wait for 4.5 seconds
+    }, 5500); // wait for 5.5 seconds
   } else {
     console.log("[Error]: can not load page")
   }

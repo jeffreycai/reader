@@ -18,6 +18,18 @@ class WechatAccount extends BaseWechatAccount {
     return null;
   }
   
+  static function findByWechatId($wechat_id) {
+    global $mysqli;
+    $query = 'SELECT * FROM wechat_account WHERE wechat_id=' . DBObject::prepare_val_for_sql($wechat_id);
+    $result = $mysqli->query($query);
+    if ($result && $b = $result->fetch_object()) {
+      $obj = new WechatAccount();
+      DBObject::importQueryResultToDbObject($b, $obj);
+      return $obj;
+    }
+    return null;
+  }
+  
   static function findAllToCrawl() {
     global $mysqli;
     $query = "SELECT * FROM wechat_account WHERE active=1";

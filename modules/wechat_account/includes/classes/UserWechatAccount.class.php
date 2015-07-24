@@ -80,11 +80,15 @@ class UserWechatAccount extends DBObject {
     return null;
   }
   
-  static function findAll() {
+  static function findAll($uid = false) {
     global $mysqli;
-    $user = MySiteUser::getCurrentUser();
+    if ($uid == false) {
+      $user = MySiteUser::getCurrentUser();
+      $uid = $user->getId();
+    }
     
-    $query = "SELECT * FROM user_".$user->getId()."_account";
+    
+    $query = "SELECT * FROM user_".$uid."_account";
     $result = $mysqli->query($query);
     
     $rtn = array();
