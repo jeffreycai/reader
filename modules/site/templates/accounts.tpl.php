@@ -5,10 +5,10 @@
     <div class="col-xs-6 col-sm-4">
       <div class="tile">
         <div class="thumb">
-          <img src="<?php echo $account->getQrCode() ?>" alt="<?php echo $account->getNickname() ?>" />
+          <a href="<?php echo uri('account/' . $account->getOpenid()) ?>"><img class="lazyloading" src="<?php echo uri('modules/site/assets/images/ajax-loader-2.gif') ?>" data-source="<?php echo $account->getLogo() ?>" /></a>
         </div>
         <div class="details">
-          <h2><?php echo $account->getNickname() ?></h2>
+          <h2><a href="<?php echo uri('account/' . $account->getOpenid()) ?>"><?php echo $account->getNickname() ?></a></h2>
         </div>
       </div>
     </div>

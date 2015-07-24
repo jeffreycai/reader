@@ -75,7 +75,7 @@
 
 <script>
   jQuery(function(){
-    $('.subscribe').on('click', function(){
+    $('.right').on('click', '.subscribe', function(){
       var button = $(this);
       var html = $(this).html();
       $(this).addClass('disabled').html('<img src="<?php echo uri('modules/site/assets/images/ajax-loader.gif') ?>" alt="loading" />');
@@ -99,7 +99,7 @@
         }
       }, 'json');
     });
-    $('.unsubscribe').on('click', function(){
+    $('.right').on('click', '.unsubscribe', function(){
       var button = $(this);
       var html = $(this).html();
       $(this).addClass('disabled').html('<img src="<?php echo uri('modules/site/assets/images/ajax-loader.gif') ?>" alt="loading" />');

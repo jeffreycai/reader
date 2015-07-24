@@ -274,3 +274,33 @@ body.accounts_search .article .left img {
   font-size: 0.9em;
   color: #AAA;
 }
+
+/** accounts **/
+.tile {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.tile .thumb a {
+  display: block;
+  width: 64px;
+  margin: 20px auto 0 auto;
+}
+.tile .thumb img {
+  display: block;
+  padding: 2px;
+  background-color: #FFF;
+  border: 1px solid #AAA;
+  border-radius: 30px;
+  width: 60px;
+  height: 60px;
+}
+.tile .details h2 {
+  font-size: 0.9em;
+  margin-top: 10px;
+}
+.tile .details h2 a {
+  color: #444;
+}
+.tile .details h2 a:hover {
+  color: #F44F44;
+}

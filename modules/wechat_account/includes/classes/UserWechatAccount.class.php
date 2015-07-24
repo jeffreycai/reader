@@ -139,4 +139,48 @@ class UserWechatAccount extends DBObject {
   public function getCategory() {
     return UserWechatCategory::findById($this->getCategoryId());
   }
+  
+  public function save() {
+    $rtn = parent::save();
+    
+    // create extra relationship for wechat_account_user if not existed
+    if ($rtn) {
+      $user = MySiteUser::getCurrentUser();
+      
+      $wechat_account_user = WechatAccountUser::findbyCombo($this->getAccountId(), $user->getId());
+      if (!$wechat_account_user) {
+        $wechat_account_user = new WechatAccountUser();
+        $wechat_account_user->setAccountId($this->getAccountId());
+        $wechat_account_user->setUserId($user->getId());
+        $wechat_account_user->save();
+      }
+    }
+    
+    return $rtn;
+  }
+  
+  public function delete() {
+    $rtn = parent::delete();
+    
+    // delete extra relationship for wechat_account_user if existed
+    if ($rtn) {
+      $user = MySiteUser::getCurrentUser();
+      
+      $wechat_account_user = WechatAccountUser::findbyCombo($this->getAccountId(), $user->getId());
+      if ($wechat_account_user) {
+        $wechat_account_user->delete();
+      }
+    }
+    
+    // check if there is any other users subscribing this wechat_account, if no, we delete it
+    if ($rtn) {
+      $wechat_account_users = WechatAccountUser::findByAccountId($this->getAccountId());
+      if (sizeof($wechat_account_users) == 0) {
+        $wechat_account = WechatAccount::findById($this->getAccountId());
+        $wechat_account->delete();
+      }
+    }
+    
+    return $rtn;
+  }
 }

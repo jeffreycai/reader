@@ -71,4 +71,22 @@ wechat_article:
     - `wechat_article_combo` (`biz_id`,`mid`,`idx`)
     
     
-    
+wechat_account_user:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    account_id: INT
+    user_id: INT
+  indexes:
+    - `wechat_account_user_combo` (`account_id`,`user_id`)
+  fks:
+    account_id:
+      foreign_key: account_id
+      references: wechat_account.id
+      on_delete: CASCADE
+      on_update: CASCADE
+    user_id:
+      foreign_key: user_id
+      references: site_user.id
+      on_delete: CASCADE
+      on_update: CASCADE

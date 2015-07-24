@@ -5,8 +5,11 @@
  */
 require __DIR__ . "/../../../bootstrap.php";
 
+if (!is_cli()) {
+  exit();
+}
 
-$how_many_processed_once = 2;
+$how_many_processed_once = 15;
 
 
 $result_dir = CACHE_DIR . DS . 'phantomjs_results';
@@ -83,6 +86,7 @@ if ($handle = opendir($result_dir)) {
           $wechat_article->save();
           
         }
+        $dom->clear();
       }
       $i++;
     } else {

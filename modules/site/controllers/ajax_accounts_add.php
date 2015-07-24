@@ -1,5 +1,13 @@
 <?php
 
+$response = new stdClass();
+if (!has_permission('manager feeds')) {
+  $response->status = 'error';
+  $response->message = '您没有权限进行此操作';
+  echo json_encode($response);
+  exit;
+}
+
 $openid = isset($_POST['openid']) ? strip_tags($_POST['openid']) : null;
 $wechatid = isset($_POST['wechatid']) ? strip_tags($_POST['wechatid']) : null;
 $description = isset($_POST['description']) ? strip_tags($_POST['description']) : null;
@@ -8,7 +16,6 @@ $nickname = isset($_POST['nickname']) ? strip_tags($_POST['nickname']) : null;
 $qrcode = isset($_POST['qrcode']) ? strip_tags($_POST['qrcode']) : null;
 $logo = isset($_POST['logo']) ? strip_tags($_POST['logo']) : null;
 
-$response = new stdClass();
 
 // if wechat account hasn't been added globally, we add it
 $wechat_account = WechatAccount::findByOpenid($openid);
