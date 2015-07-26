@@ -112,6 +112,53 @@ COLLATE = utf8_general_ci;
     }
   }
   
-  
+  public function getArticles($page = 1, $category = null, $read = null) {
+    global $mysqli;
+    
+    $user_account_table = 'user_' . $this->getId() . '_account';
+    $user_category_table = 'user_' . $this->getId() . '_category';
+    $user_read_table = 'user_' . $this->getId() . '_read';
+    
+    // where
+    $where = array();
+    if ($category) {
+      $where[] = " ua.category_id=$category ";
+    }
+    if (sizeof($where)) {
+      $where = " WHERE " . implode(' AND ', $where) . " ";
+    } else {
+      $where = '';
+    }
+    
+    
+    // join
+    $join = "";
+    if ($read == 1) {
+      $join = " INNER JOIN $user_read_table as ur ON ur.article_id=wa.id ";
+    }
+    
+    // limit
+    $limit = "";
+    if ($page) {
+      $settings = Vars::getSettings();
+      $limit = " LIMIT " . ($page - 1) * $settings['articles_per_page'] . ", " . $settings['articles_per_page'];
+    }
+    
+    // order by
+    $order_by = ' ORDER BY wa.published_at DESC ';
+    
+    ///// final query
+    $query = "SELECT wa.* FROM wechat_article as wa JOIN $user_account_table as ua ON ua.account_id=wa.account_id $join $where $order_by $limit";
+//_debug($query);
+    $result = $mysqli->query($query);
+    $rtn = array();
+    while ($result && $b = $result->fetch_object()) {
+      $obj= new WechatArticle();
+      DBObject::importQueryResultToDbObject($b, $obj);
+      $rtn[] = $obj;
+    }
+    
+    return $rtn;
+  }
 
 }

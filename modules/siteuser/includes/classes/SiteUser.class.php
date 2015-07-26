@@ -9,6 +9,9 @@ class SiteUser extends BaseSiteUser {
     
     $rtn = array();
     while ($result && $b = $result->fetch_object()) {
+      if (class_exists('MySiteUser')) {
+        $instance = 'MySiteUser';
+      }
       $obj= new $instance();
       DBObject::importQueryResultToDbObject($b, $obj);
       $rtn[] = $obj;
@@ -140,6 +143,10 @@ class SiteUser extends BaseSiteUser {
   
   
   static function findByUsername($username, $instance='SiteUser') {
+    if (class_exists('MySiteUser')) {
+      $instance = 'MySiteUser';
+    }
+    
     global $mysqli;
     $query = 'SELECT * FROM site_user WHERE username=' . DBObject::prepare_val_for_sql($username);
     $result = $mysqli->query($query);
@@ -156,6 +163,9 @@ class SiteUser extends BaseSiteUser {
     $query = 'SELECT * FROM site_user WHERE email=' . DBObject::prepare_val_for_sql($email);
     $result = $mysqli->query($query);
     if ($result && $b = $result->fetch_object()) {
+      if (class_exists('MySiteUser')) {
+        $instance = 'MySiteUser';
+      }
       $obj = new $instance();
       DBObject::importQueryResultToDbObject($b, $obj);
       return $obj;

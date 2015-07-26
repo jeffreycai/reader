@@ -24,7 +24,7 @@ jQuery(function(){
   
   /** article overlay **/
   var opacity = 0.2;
-  $('body.articles .article').on('click', function(){
+  $('body.articles #body').on('click', '.article', function(){
     // reset all
     $('.article .actions').hide();
     $('.article .content').css('opacity', 1);
@@ -32,7 +32,7 @@ jQuery(function(){
     $('.actions', this).show();
     $('.content', this).css('opacity', opacity);
   });
-  $('body.articles .article .actions').on('click', function(event){
+  $('body.articles #body').on('click', '.article .actions', function(event){
     event.stopPropagation();
     var parent = $(this).parents('.article').first();
     $(this).hide();
@@ -40,7 +40,13 @@ jQuery(function(){
   });
   
   /** article actions **/
-  // 
+  // read
+  $('body.articles #body').on('click', '.article .read', function(event){
+    event.stopPropagation();
+    var url = $(this).data('url');alert(url);
+    window.open(url);
+    return false;
+  });
   
   
   /** page load overlay **/
@@ -70,5 +76,6 @@ jQuery(function(){
         }
     });
   });
+  
 });
 

@@ -7,8 +7,8 @@ $page = isset($_GET['page']) && !empty($_GET['page']) ? intval(strip_tags($_GET[
 $category = isset($_GET['cat']) && !empty($_GET['cat']) ? strip_tags($_GET['cat']) : null;
 $read = isset($_GET['read']) && !empty($_GET['read']) ? strip_tags($_GET['read']) : null;
 
-$user = MySiteUser::getCurrentUser();
-$articles = $user->getArticles($page, $category, $read);
+//$user = MySiteUser::getCurrentUser();
+//$articles = $user->getArticles($page, $category, $read);
 
 
 $html = new HTML();
@@ -22,7 +22,9 @@ $html->renderOut('site/header/subscription', array(
 ));
 $html->renderOut('site/nav/main');
 $html->renderOut('site/articles', array(
-    'articles' => $articles
+    'page' => $page ? $page : 1,
+    'category' => $category,
+    'read' => $read
 ));
 $html->renderOut('site/footer');
 $html->renderOut('site/html_footer');

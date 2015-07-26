@@ -10,7 +10,7 @@ wechat_account:
     qr_code: VARCHAR(127) NOT NULL
     logo: VARCHAR(127) NOT NULL
     active: TINYINT(1) DEFAULT 1
-    last_updated: INT
+    last_scheduled: INT
   indexes:
     - `wechat_account_openid` (`openid` ASC)
     - `wechat_account_wechat_id` (`wechat_id` ASC)

@@ -12,7 +12,7 @@ include_once MODULESROOT . DS . 'core' . DS . 'includes' . DS . 'classes' . DS .
  * - qr_code
  * - logo
  * - active
- * - last_updated
+ * - last_scheduled
  */
 class BaseWechatAccount extends DBObject {
   /**
@@ -87,11 +87,11 @@ class BaseWechatAccount extends DBObject {
    public function getActive() {
      return $this->getDbFieldActive();
    }
-   public function setLastUpdated($var) {
-     $this->setDbFieldLast_updated($var);
+   public function setLastScheduled($var) {
+     $this->setDbFieldLast_scheduled($var);
    }
-   public function getLastUpdated() {
-     return $this->getDbFieldLast_updated();
+   public function getLastScheduled() {
+     return $this->getDbFieldLast_scheduled();
    }
 
   
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `wechat_account` (
   `qr_code` VARCHAR(127) NOT NULL ,
   `logo` VARCHAR(127) NOT NULL ,
   `active` TINYINT(1) DEFAULT 1 ,
-  `last_updated` INT ,
+  `last_scheduled` INT ,
   PRIMARY KEY (`id`)
  ,
 INDEX `wechat_account_openid` (`openid` ASC) ,

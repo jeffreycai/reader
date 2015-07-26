@@ -51,7 +51,7 @@ class UserWechatRead extends DBObject {
   /**
    * self functions
    */
-  static function findById($id, $instance = 'User1Read') {
+  static function findById($id, $instance = 'UserWechatRead') {
     global $mysqli;
     $user = MySiteUser::getCurrentUser();
     
@@ -65,7 +65,21 @@ class UserWechatRead extends DBObject {
     return null;
   }
   
-  static function findAll() {
+  static function findByArticleId($aid, $instance = 'UserWechatRead') {
+    global $mysqli;
+    $user = MySiteUser::getCurrentUser();
+    
+    $query = 'SELECT * FROM user_'.$user->getId().'_read WHERE article_id=' . $aid;
+    $result = $mysqli->query($query);
+    if ($result && $b = $result->fetch_object()) {
+      $obj = new $instance();
+      DBObject::importQueryResultToDbObject($b, $obj);
+      return $obj;
+    }
+    return null;
+  }
+  
+  static function findAll($instance = 'UserWechatRead') {
     global $mysqli;
     $user = MySiteUser::getCurrentUser();
     
@@ -74,7 +88,7 @@ class UserWechatRead extends DBObject {
     
     $rtn = array();
     while ($result && $b = $result->fetch_object()) {
-      $obj= new User1Read();
+      $obj= new $instance();
       DBObject::importQueryResultToDbObject($b, $obj);
       $rtn[] = $obj;
     }
@@ -82,7 +96,7 @@ class UserWechatRead extends DBObject {
     return $rtn;
   }
   
-  static function findAllWithPage($page, $entries_per_page) {
+  static function findAllWithPage($page, $entries_per_page, $instance = 'UserWechatRead') {
     global $mysqli;
     $user = MySiteUser::getCurrentUser();
     
@@ -91,7 +105,7 @@ class UserWechatRead extends DBObject {
     
     $rtn = array();
     while ($result && $b = $result->fetch_object()) {
-      $obj= new User1Read();
+      $obj= new $instance();
       DBObject::importQueryResultToDbObject($b, $obj);
       $rtn[] = $obj;
     }

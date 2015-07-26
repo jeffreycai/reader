@@ -10,6 +10,11 @@ routing:
     isSecure: 0
     i18n: 0
     controller: site/articles
+  articles_loadmore:
+    path: ^\/articles\/load\/?$
+    isSecure: 0
+    i18n: 0
+    controller: site/ajax-loadmore
   account_list:
     path: ^\/accounts\/?$
     isSecure: 0

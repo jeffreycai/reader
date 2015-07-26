@@ -17,7 +17,7 @@ if (!is_dir($result_dir)) {
 }
 
 // generates phantomjs scripts
-$accounts = WechatAccount::findAllToCrawl();
+$accounts = WechatAccount::findAllToCrawl(3500);
 foreach ($accounts as $account) {
   
   // append Shanghai timestamp at the end of file name, so that when we collect
@@ -35,5 +35,8 @@ foreach ($accounts as $account) {
           'phantomjs ' . MODULESROOT . '/wechat_account/phantomjs/articles.js "http://weixin.sogou.com/gzh?openid=' . $account->getOpenid() . '" > ' . $result_file
   );
   chmod($script_file, 0700);
+  
+  $account->setLastScheduled(time());
+  $account->save();
 }
 

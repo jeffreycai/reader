@@ -30,9 +30,9 @@ class WechatAccount extends BaseWechatAccount {
     return null;
   }
   
-  static function findAllToCrawl() {
+  static function findAllToCrawl($span = 3600) {
     global $mysqli;
-    $query = "SELECT * FROM wechat_account WHERE active=1";
+    $query = "SELECT * FROM wechat_account WHERE active=1 AND (last_scheduled IS NULL OR last_scheduled < ".(time()-$span).")";
     $result = $mysqli->query($query);
     
     $rtn = array();

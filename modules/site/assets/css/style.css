@@ -216,6 +216,7 @@ body.accounts_search .article .left img {
 .actions ul li a {
   font-size: 1.4em;
   color: #777;
+  cursor: pointer;
 }
 .article .account,
 .article .description, 

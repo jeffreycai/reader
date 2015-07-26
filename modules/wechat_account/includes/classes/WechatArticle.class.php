@@ -14,4 +14,8 @@ class WechatArticle extends BaseWechatArticle {
     }
     return null;
   }
+  
+  public function getWechatAccount() {
+    return WechatAccount::findById($this->getAccountId());
+  }
 }

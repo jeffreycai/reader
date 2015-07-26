@@ -131,6 +131,9 @@ COLLATE = utf8_general_ci;
     $query = 'SELECT * FROM site_user WHERE id=' . $id;
     $result = $mysqli->query($query);
     if ($result && $b = $result->fetch_object()) {
+      if (class_exists('MySiteUser')) {
+        $instance = 'MySiteUser';
+      }
       $obj = new $instance();
       DBObject::importQueryResultToDbObject($b, $obj);
       return $obj;
@@ -138,14 +141,17 @@ COLLATE = utf8_general_ci;
     return null;
   }
   
-  static function findAll() {
+  static function findAll($instance = 'SiteUser') {
     global $mysqli;
     $query = "SELECT * FROM site_user";
     $result = $mysqli->query($query);
     
     $rtn = array();
     while ($result && $b = $result->fetch_object()) {
-      $obj= new SiteUser();
+      if (class_exists('MySiteUser')) {
+        $instance = 'MySiteUser';
+      }
+      $obj= new $instance();
       DBObject::importQueryResultToDbObject($b, $obj);
       $rtn[] = $obj;
     }
@@ -153,14 +159,17 @@ COLLATE = utf8_general_ci;
     return $rtn;
   }
   
-  static function findAllWithPage($page, $entries_per_page) {
+  static function findAllWithPage($page, $entries_per_page, $instance = 'SiteUser') {
     global $mysqli;
     $query = "SELECT * FROM site_user LIMIT " . ($page - 1) * $entries_per_page . ", " . $entries_per_page;
     $result = $mysqli->query($query);
     
     $rtn = array();
     while ($result && $b = $result->fetch_object()) {
-      $obj= new SiteUser();
+      if (class_exists('MySiteUser')) {
+        $instance = 'MySiteUser';
+      }
+      $obj= new $instance();
       DBObject::importQueryResultToDbObject($b, $obj);
       $rtn[] = $obj;
     }
