@@ -14,9 +14,11 @@ class MySiteUser extends SiteUser {
     self::createReadTableIfNotExist($table_name_prefix);
     
     // add default category none
-    $category = new UserWechatCategory();
-    $category->setName('未分类');
-    $category->save();
+    if (UserWechatCategory::findById(1) == null) {
+      $category = new UserWechatCategory();
+      $category->setName('未分类');
+      $category->save();
+    }
   }
   
   public function delete() {
@@ -112,7 +114,7 @@ COLLATE = utf8_general_ci;
     }
   }
   
-  public function getArticles($page = 1, $category = null, $read = null) {
+  public function getArticles($page = 1, $category = null, $unread = null) {
     global $mysqli;
     
     $user_account_table = 'user_' . $this->getId() . '_account';
@@ -126,15 +128,21 @@ COLLATE = utf8_general_ci;
     }
     if (sizeof($where)) {
       $where = " WHERE " . implode(' AND ', $where) . " ";
+      if ($unread == 1) {
+        $where .= " AND ur.article_id IS NULL ";
+      }
     } else {
       $where = '';
+      if ($unread == 1) {
+        $where = " WHERE ur.article_id IS NULL";
+      }
     }
     
     
     // join
     $join = "";
-    if ($read == 1) {
-      $join = " INNER JOIN $user_read_table as ur ON ur.article_id=wa.id ";
+    if ($unread == 1) {
+      $join = " LEFT JOIN $user_read_table as ur ON ur.article_id=wa.id ";
     }
     
     // limit
@@ -148,13 +156,14 @@ COLLATE = utf8_general_ci;
     $order_by = ' ORDER BY wa.published_at DESC ';
     
     ///// final query
-    $query = "SELECT wa.* FROM wechat_article as wa JOIN $user_account_table as ua ON ua.account_id=wa.account_id $join $where $order_by $limit";
+    $query = "SELECT wa.*, ua.id AS user_wechat_account_id FROM wechat_article as wa JOIN $user_account_table as ua ON ua.account_id=wa.account_id $join $where $order_by $limit";
 //_debug($query);
     $result = $mysqli->query($query);
     $rtn = array();
     while ($result && $b = $result->fetch_object()) {
       $obj= new WechatArticle();
       DBObject::importQueryResultToDbObject($b, $obj);
+      $obj->user_wechat_account_id = $b->user_wechat_account_id;
       $rtn[] = $obj;
     }
     

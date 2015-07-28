@@ -90,11 +90,14 @@ a:hover {
 .dropdown-content a.active {
   color: #F44F44 !important;
 }
-#filter {
-  left: 80px;
-}
 #category {
   left: 20px;
+}
+#filter-readonly {
+  font-size: 0.8em;
+  display: block;
+  float: right;
+  margin-top: 13px;
 }
 
 /** footer style **/
@@ -154,12 +157,13 @@ body.articles .article {
   height: 86px;
 }
 .article.read {
-  background-color: #F9F9F9;
+  background-color: #F4F4F4;
 }
 .article .inner {
   padding: 10px 0;
   *zoom: 1;
   position: relative;
+  height: 74px;
 }
 .article .inner:after {
   content: " ";
@@ -212,11 +216,24 @@ body.accounts_search .article .left img {
 .actions ul li {
   display: inline-block;
   margin: 0 15px;
+  line-height: 1em;
+}
+.actions ul li i {
+  font-size: 0.6em;
+  color: #666;
+  font-style: normal;
 }
 .actions ul li a {
   font-size: 1.4em;
   color: #777;
   cursor: pointer;
+  text-decoration: none;
+}
+.actions ul li a.active {
+  color: #F44F44;
+}
+.actions ul li a img {
+  width: 22px;
 }
 .article .account,
 .article .description, 
@@ -238,6 +255,20 @@ body.accounts_search .article .left img {
 .article .sp-txt {
   padding-left: 70px;
   display: block;
+}
+.article .wechat_nickname {
+  position: absolute;
+  bottom: 5px;
+  left: 85px;
+  font-size: 0.8em;
+  color: #777;
+}
+.article .published_at {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 0.8em;
+  color: #AAA;
 }
 .btn.subscribe {
   color: #60D35F;

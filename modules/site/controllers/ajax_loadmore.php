@@ -4,10 +4,10 @@ require_login();
 
 $page = strip_tags($_POST['page']);
 $category = strip_tags($_POST['category']);
-$read = strip_tags($_POST['read']);
+$unread = strip_tags($_POST['unread']);
 
 $user = MySiteUser::getCurrentUser();
-$articles = $user->getArticles($page, $category, $read);
+$articles = $user->getArticles($page, $category, $unread);
 
 $rtn = new stdClass();
 $rtn->articles = array();
@@ -17,11 +17,14 @@ foreach ($articles as $article) {
   $a->title = $article->getTitle();
   $a->thumbnail = $article->getThumbnail();
   $a->url = $article->getUrl();
+  $a->wechat_id = $article->getWechatId();
+  $a->id = $article->getId();
+  $a->user_wechat_account_id = $article->user_wechat_account_id;
   
   $original_timezone = date_default_timezone_get();
   date_default_timezone_set('Asia/Shanghai');
   if ($article->getPublishedAt() > strtotime(date('Y-m-d'))) {
-    $a->published_at = date('H:i:s', $article->getPublishedAt());
+    $a->published_at = date('H:i', $article->getPublishedAt());
   } else  {
     $a->published_at = date('Y-m-d', $article->getPublishedAt());
   }

@@ -14,7 +14,12 @@ routing:
     path: ^\/articles\/load\/?$
     isSecure: 0
     i18n: 0
-    controller: site/ajax-loadmore
+    controller: site/ajax_loadmore
+  article_mark_as_read:
+    path: ^\/article\/mark\-as\/read\/?$
+    isSecure: 0
+    i18n: 0
+    controller: site/ajax_mark_as_read
   account_list:
     path: ^\/accounts\/?$
     isSecure: 0
@@ -35,6 +40,11 @@ routing:
     isSecure: 0
     i18n: 0
     controller: site/ajax_accounts_remove
+  account:
+    path: ^\/account\/(^\/+)\/?$
+    isSecure: 0
+    i18n: 0
+    controller: site/account
 
 assets:
   frontend:

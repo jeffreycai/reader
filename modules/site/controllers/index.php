@@ -1,3 +1,7 @@
 <?php
 
-echo "hello world";
+if (is_login()) {
+  HTML::forward('articles');
+}
+?>
+Homepage
